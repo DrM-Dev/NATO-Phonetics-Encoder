@@ -61,7 +61,7 @@ print(f"******** WELCOME TO NATO Phonetics Encode {ver}    -   By: Dr.m DEV ****
 #==========================================================================================================
 
 #========================Data-Base SETUP
-nato_phonetics_DF = pandas.read_csv(r"raw code/nato_phonetic_alphabet.csv")
+nato_phonetics_DF = pandas.read_csv(r"../database/nato_phonetic_alphabet.csv")
 # print(nato_phonetics_DF)
 
 
@@ -120,10 +120,10 @@ window.config(padx=20,pady=20)
 #_____________________________ICON
 main_canvas = Canvas(width=main_window_width, height=main_window_height/2)
 #
-icon_image = PhotoImage(file=r"images/NATO Phonetics.png")
+icon_image = PhotoImage(file=r"../images/NATO Phonetics.png")
 prog_pic = main_canvas.create_image(300/2,300/2,image = icon_image)
 #
-logo_image = PhotoImage(file=r"images/logo.png")
+logo_image = PhotoImage(file=r"../images/logo.png")
 logo_pic = main_canvas.create_image(370,40, image = logo_image)
 #
 main_canvas.place(x=icon_x,y=icon_y)
