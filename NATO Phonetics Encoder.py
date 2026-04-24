@@ -13,13 +13,12 @@ nato_phonetics_DF = pandas.read_csv("nato_phonetic_alphabet.csv")
 
 #====================================================================================DB to DIC
 #Turning Database into Dictionary:
-final_NATO_ALPAHBET_DIC = { column_info.letter:column_info.code for (index,column_info) in nato_phonetics_DF.iterrows()}
+final_NATO_ALPAHBET_DIC = { row_info.letter:row_info.code for (index,row_info) in nato_phonetics_DF.iterrows()}
 #-------------------
 #my edit on the dic:
 #just wanted to add SPACE as - inside the Dictionary\\
 final_NATO_ALPAHBET_DIC[" "] = '__'
 final_NATO_ALPAHBET_DIC["\n"] = '|'
-
 
 # #DEBUG
 print("\n" * 5)
