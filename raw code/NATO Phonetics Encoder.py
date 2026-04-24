@@ -61,7 +61,7 @@ print(f"******** WELCOME TO NATO Phonetics Encode {ver}    -   By: Dr.m DEV ****
 #==========================================================================================================
 
 #========================Data-Base SETUP
-nato_phonetics_DF = pandas.read_csv("nato_phonetic_alphabet.csv")
+nato_phonetics_DF = pandas.read_csv(r"raw code/nato_phonetic_alphabet.csv")
 # print(nato_phonetics_DF)
 
 
