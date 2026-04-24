@@ -39,16 +39,15 @@ numbers_symbols_list = [str(number) for number in numbers_symbols_list]
 #
 # This contains: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
 symbols_list = list(string.punctuation)
-print(symbols_list)
 #
 numbers_symbols_list.extend(symbols_list)
 
 # #DEBUG
-print("\n" * 5)
-print(final_NATO_ALPAHBET_DIC)
-print(alphabet)
-print(final_alphabet)
-print(numbers_symbols_list)
+# print("\n" * 5)
+# print(final_NATO_ALPAHBET_DIC)
+# print(alphabet)
+# print(final_alphabet)
+# print(numbers_symbols_list)
 
 
 #==================================================================UI-Setup:
@@ -70,7 +69,7 @@ window.maxsize(main_window_width,main_window_height)
 window.config(padx=20,pady=20)
 
 #_____________________________ICON
-main_canvas = Canvas(width=main_window_width/2, height=main_window_height/2)
+main_canvas = Canvas(width=main_window_width, height=main_window_height/2)
 #
 icon_image = PhotoImage(file=r"images/NATO Phonetics.png")
 prog_pic = main_canvas.create_image(300/2,300/2,image = icon_image)
@@ -133,6 +132,10 @@ def translate():
 translate_button = Button(text="Translate", font=BUTTONS_FONT, width=8,height=1, command=translate, bg="cyan")
 translate_button.place(x=widgets_x+100,y=widgets_y+120
                                 +trans_button_dis)
+#-----other methods of activation:
+translate_button.focus() #activate with the space-bar
+#
+window.bind('<Return>', lambda event: translate_button.invoke()) #activate with Return-key "Enter"
 
 #==============END:
 window.mainloop()
