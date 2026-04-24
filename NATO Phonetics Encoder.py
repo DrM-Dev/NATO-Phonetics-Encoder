@@ -4,10 +4,11 @@ ver = 0.1
 import pandas
 from gevent.util import print_run_info
 #_______________|
+import string
 from tkinter import *
 #_______________|
 MAIN_FONT = ("Courier", 11, "bold")
-BUTTONS_FONT = ("Times New Roma", 8, "bold")
+BUTTONS_FONT = ("Times New Roma", 12, "bold")
 
 
 #========================Data-Base SETUP
@@ -24,12 +25,30 @@ final_NATO_ALPAHBET_DIC = { row_info.letter:row_info.code for (index,row_info) i
 final_NATO_ALPAHBET_DIC[" "] = '__'
 final_NATO_ALPAHBET_DIC["\n"] = '|'
 #
-# adding numbers
-numbers_list = [0,1,2,3,4,5,6,7,8,9]
+# normal English alphabet
+alphabet = list(string.ascii_lowercase) # Output: ['a', 'b', 'c', ..., 'z']
+# modify it to fit the all caps NATO-Phonetics
+final_alphabet = [letter.upper() for letter in alphabet]
+#
+#-------------------
+#
+# adding numbers & symbols
+numbers_symbols_list = [0,1,2,3,4,5,6,7,8,9]
+# turning int to str
+numbers_symbols_list = [str(number) for number in numbers_symbols_list]
+#
+# This contains: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+symbols_list = list(string.punctuation)
+print(symbols_list)
+#
+numbers_symbols_list.extend(symbols_list)
 
 # #DEBUG
 print("\n" * 5)
 print(final_NATO_ALPAHBET_DIC)
+print(alphabet)
+print(final_alphabet)
+print(numbers_symbols_list)
 
 
 #==================================================================UI-Setup:
@@ -69,26 +88,51 @@ input_entry.place(x=widgets_x-30,y=widgets_y+25)
 #_____________________________OUTPUT
 output_y_displacement = 50
 ####
-input_label = Label(text="Translation to NATO Phonetics:", font=MAIN_FONT)
-input_label.place(x=widgets_x,y=widgets_y
+output_label = Label(text="Translation to NATO Phonetics:", font=MAIN_FONT)
+output_label.place(x=widgets_x,y=widgets_y
                                 +output_y_displacement)
 
-input_entry = Text(width=45,height=8)
-input_entry.place(x=widgets_x-30,y=widgets_y+25
+output_entry = Text(width=45,height=8)
+output_entry.place(x=widgets_x-30,y=widgets_y+25
                                 +output_y_displacement)
 
 
+#____________________Translation\\
+trans_button_dis = 100
 
+def translate():
+    global final_NATO_ALPAHBET_DIC
+    global final_alphabet
+    global numbers_symbols_list
+    #####
+    user_input = (str(input_entry.get())).upper()
+    user_input_listed = list(user_input)
+    #----
+    output = ""
+    #####
 
+    #----------------clear text-box
+    output_entry.delete("1.0", END)
 
+    #----------------Translation
+    for character in user_input_listed:
+        if character in final_alphabet:
+            output += final_NATO_ALPAHBET_DIC[character]
+            output += "."
+        elif character in numbers_symbols_list:
+            output += character
+            output += "."
+        else:
+            output += character
+            output += "."
+    #-------#
 
+    output_entry.insert(END, f"{output}")
 
-
-
-
-
-
-
+#@==============================================
+translate_button = Button(text="Translate", font=BUTTONS_FONT, width=8,height=1, command=translate, bg="cyan")
+translate_button.place(x=widgets_x+100,y=widgets_y+120
+                                +trans_button_dis)
 
 #==============END:
 window.mainloop()
