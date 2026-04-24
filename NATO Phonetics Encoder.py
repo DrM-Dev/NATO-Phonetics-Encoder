@@ -123,6 +123,9 @@ main_canvas = Canvas(width=main_window_width, height=main_window_height/2)
 icon_image = PhotoImage(file=r"images/NATO Phonetics.png")
 prog_pic = main_canvas.create_image(300/2,300/2,image = icon_image)
 #
+logo_image = PhotoImage(file=r"images/logo.png")
+logo_pic = main_canvas.create_image(370,40, image = logo_image)
+#
 main_canvas.place(x=icon_x,y=icon_y)
 
 #_____________________________INPUT
